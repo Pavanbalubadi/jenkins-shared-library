@@ -1,7 +1,7 @@
-dnf call(
-        node('workstation') {
-            stage('sample') {
-                echo 'nsample'
-            }
+dnf call() {
+    node('workstation') {
+        stage('sample') {
+            echo 'nsample'
         }
-)
+    }
+}
