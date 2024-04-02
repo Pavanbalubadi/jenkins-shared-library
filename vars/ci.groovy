@@ -1,7 +1,10 @@
 def call() {
     node('workstation') {
-        stage('sample') {
-            echo 'nsample'
+        options {
+            ansiColor('xterm')
         }
+        stage('code') {}
+        stage('compile') {}
+
     }
 }
