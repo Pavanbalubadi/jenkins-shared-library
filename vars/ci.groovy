@@ -1,6 +1,7 @@
 dnf call(
         node('workstation') {
-            stage('Example') {
+            stage('sample') {
+                echo 'nsample'
             }
         }
 )
