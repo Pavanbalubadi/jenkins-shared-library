@@ -1,5 +1,6 @@
 def call() {
     node('workstation') {
+        sh 'env'
         stage('code') {}
         stage('compile/download dependencies') {}
         stage('test cases') {}
