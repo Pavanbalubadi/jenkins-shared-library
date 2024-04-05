@@ -1,22 +1,18 @@
 def call() {
     node('workstation') {
         sh 'env'
-        stage('code') {}
-        stage('compile/download dependencies') {}
-        if(env.BRANCH_NAME=main){
+
+
+        If(BRANCH_NAME = "manin"){
+            stage('code checkout') {}
+            stage('compile/download dependencies') {}
             stage('Build') {}
-        }else if(env.BRANCH_NAME ==~ "PR.*"){
-            stage('integration test') {}
-        }
-        (env.TAG_NAME ==~ ".*"){
-            stage('Build') {}
-            stage('Release') {}
         }
 
-
-
-
-
+        stage('test cases') {}
+        stage('integration test') {}
+        stage('Build') {}
+        stage('Release') {}
 
     }
 
