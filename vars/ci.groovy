@@ -7,6 +7,7 @@
 //stage('Release') {}
 def call() {
     node('workstation'){
+        ansiColor('xterm') {}
         sh 'env'
         sh "find . | sed -e '1d' |xargs rm -rf"
 
