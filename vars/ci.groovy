@@ -6,19 +6,20 @@
 //stage('Build') {}
 //stage('Release') {}
 def call() {
-    node('workstation'){
+    node('workstation') {
         ansiColor('xterm') {}
         sh 'env'
         sh "find . | sed -e '1d' |xargs rm -rf"
 
-        if(env.TAG_NAME ==~ ".*") {
+        if (env.TAG_NAME ==~ ".*") {
             env.branch_name = "refs/tags/${env.TAG_NAME}"
-        } else if (env.BRANCH_NAME ==~ "PR-.*"){
+        } else {
+            if (env.BRANCH_NAME ==~ "PR-.*") {
                 env.branch_name = "${env.BRANCH_NAME}"
             } else {
                 env.branch_name = "${env.BRANCH_NAME}"
             }
-        }
+
 
         stage('code checkout') {
             //git branch: 'main', url: 'https://github.com/Pavanbalubadi/expense-backend.git'
