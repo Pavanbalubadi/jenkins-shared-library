@@ -3,10 +3,20 @@ def call() {
         sh 'env'
         stage('code') {}
         stage('compile/download dependencies') {}
-        stage('test cases') {}
-        stage('integration test') {}
-        stage('Build') {}
-        stage('Release') {}
+        if(env.BRANCH_NAME=main){
+            stage('Build') {}
+        }else if(env.BRANCH_NAME ==~ "PR.*"){
+            stage('integration test') {}
+        }
+        (env.TAG_NAME ==~ ".*"){
+            stage('Build') {}
+            stage('Release') {}
+        }
+
+
+
+
+
 
     }
 
