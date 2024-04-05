@@ -13,8 +13,7 @@ def call() {
 
         if(env.TAG_NAME ==~ ".*") {
             env.branch_name = "refs/tags/${env.TAG_NAME}"
-        } else {
-            if (env.BRANCH_NAME ==~ "PR-.*") {
+        } else if (env.BRANCH_NAME ==~ "PR-.*"){
                 env.branch_name = "${env.BRANCH_NAME}"
             } else {
                 env.branch_name = "${env.BRANCH_NAME}"
@@ -27,7 +26,9 @@ def call() {
                     branches: [[name: "${branch_name}"]],
                     userRemoteConfigs: [[url: "https://github.com/Pavanbalubadi/expense-backend.git"]]
             )
+            sh 'ls'
         }
+
 
 
 stage('compile/download dependencies') {}
