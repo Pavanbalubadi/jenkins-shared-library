@@ -33,13 +33,17 @@ def call() {
         stage('compile/download dependencies') {}
 
         if (env.BRANCH_NAME == "main") {
+            sh 'echo branch'
             stage('Build') {}
         } else if (env.BRANCH_NAME == "PR.*") {
+            sh 'echo PR'
             stage('integration test') {}
         } else if (env.TAG_NAME ==~ ".*") {
+            sh 'echo TAG'
             stage('Build') {}
             stage('Release') {}
         } else {
+            sh 'echo Release'
             stage('test cases') {}
         }
 
