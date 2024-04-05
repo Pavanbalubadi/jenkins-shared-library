@@ -10,11 +10,11 @@ def call() {
         stage('code checkout') {}
         stage('compile/download dependencies') {}
 
-        if(BRANCH_NAME == "manin"){
+        if(env.BRANCH_NAME == "manin"){
             stage('Build') {}
-        }else if (BRANCH_NAME ==~ "PR.*"){
+        }else if (env.BRANCH_NAME ==~ "PR.*"){
             stage('integration test') {}
-        }else if (TAG_NAME ==~ ".*"){
+        }else if (env.TAG_NAME ==~ ".*"){
             stage('Build') {}
             stage('Release') {}
         }else {
