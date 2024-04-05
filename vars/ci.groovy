@@ -6,7 +6,7 @@
 //stage('Build') {}
 //stage('Release') {}
 def call() {
-    node {
+    node('workstation'){
         sh 'env'
 
 stage('code checkout') {}
