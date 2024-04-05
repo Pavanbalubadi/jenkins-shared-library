@@ -21,32 +21,29 @@ def call() {
             }
 
 
-        stage('code checkout') {
-            //git branch: 'main', url: 'https://github.com/Pavanbalubadi/expense-backend.git'
-            checkout scmGit(
-                    branches: [[name: "${branch_name}"]],
-                    userRemoteConfigs: [[url: "https://github.com/Pavanbalubadi/expense-backend.git"]]
-            )
-            sh 'ls'
+            stage('code checkout') {
+                //git branch: 'main', url: 'https://github.com/Pavanbalubadi/expense-backend.git'
+                checkout scmGit(
+                        branches: [[name: "${branch_name}"]],
+                        userRemoteConfigs: [[url: "https://github.com/Pavanbalubadi/expense-backend.git"]]
+                )
+            }
+
+
+            stage('compile/download dependencies') {}
+
+            if (env.BRANCH_NAME == "main") {
+                stage('Build') {}
+            } else if (env.BRANCH_NAME == "PR.*") {
+                stage('integration test') {}
+            } else if (env.TAG_NAME ==~ ".*") {
+                stage('Build') {}
+                stage('Release') {}
+            } else {
+                stage('test cases') {}
+            }
+
+
         }
-
-
-
-stage('compile/download dependencies') {}
-
-if(env.BRANCH_NAME == "main"){
-    stage('Build') {}
-}else if (env.BRANCH_NAME == "PR.*"){
-    stage('integration test') {}
-}else if (env.TAG_NAME ==~ ".*"){
-    stage('Build') {}
-    stage('Release') {}
-}else {
-    stage('test cases') {}
-}
-
-
     }
-
 }
-//
