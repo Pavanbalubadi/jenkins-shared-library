@@ -14,7 +14,7 @@ stage('compile/download dependencies') {}
 
 if(env.BRANCH_NAME == "main"){
     stage('Build') {}
-}else if (env.BRANCH_NAME == "PR-2-head"){
+}else if (env.BRANCH_NAME == "PR.*"){
     stage('integration test') {}
 }else if (env.TAG_NAME ==~ ".*"){
     stage('Build') {}
