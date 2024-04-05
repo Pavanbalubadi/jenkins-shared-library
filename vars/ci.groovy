@@ -10,8 +10,7 @@ def call() {
         stage('code checkout') {}
         stage('compile/download dependencies') {}
 
-
-        if(BRANCH_NAME = "manin"){
+        if(BRANCH_NAME == "manin"){
             stage('Build') {}
         }else if (BRANCH_NAME ==~ "PR.*"){
             stage('integration test') {}
